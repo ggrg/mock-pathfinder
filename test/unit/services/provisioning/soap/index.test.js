@@ -9,7 +9,7 @@ Test('Soap', soapTest => {
   let sandbox
 
   soapTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     t.end()
   })
 

@@ -21,7 +21,7 @@ Test('Server', serverTest => {
   let databaseUri = 'some-database-uri'
 
   serverTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(Db, 'connect')
     sandbox.stub(Db, 'disconnect')
     sandbox.stub(QueryService, 'create')
@@ -63,43 +63,45 @@ Test('Server', serverTest => {
       ProvisioningService.create.returns(provisioningService)
 
       require('../../src/server')
-      .then(() => {
-        test.ok(Migrator.migrate.calledOnce)
-        test.ok(Migrator.migrate.calledBefore(Db.connect))
-        test.ok(Db.connect.calledOnce)
-        test.ok(Db.connect.calledWith(databaseUri))
-        test.ok(QueryService.create.calledWith(queryConfig))
-        test.ok(queryService.start.calledOnce)
-        test.ok(ProvisioningService.create.calledWith(provisioningConfig))
-        test.ok(provisioningService.start.calledOnce)
-        test.ok(Logger.info.calledWith('mock-pathfinder server started'))
-        test.end()
-      })
+        .then(() => {
+          test.ok(Migrator.migrate.calledOnce)
+          test.ok(Migrator.migrate.calledBefore(Db.connect))
+          test.ok(Db.connect.calledOnce)
+          test.ok(Db.connect.calledWith(databaseUri))
+          test.ok(QueryService.create.calledWith(queryConfig))
+          test.ok(queryService.start.calledOnce)
+          test.ok(ProvisioningService.create.calledWith(provisioningConfig))
+          test.ok(provisioningService.start.calledOnce)
+          test.ok(Logger.info.calledWith('mock-pathfinder server started'))
+          test.end()
+        })
     })
 
     setupTest.test('cleanup and rethrow on error', test => {
       let error = new Error()
+      let reject = P.reject(error)
+      reject.catch(() => {})
 
       Db.connect.returns(P.resolve({}))
       Migrator.migrate.returns(P.resolve({}))
 
       let startStub = sandbox.stub()
-      startStub.returns(P.reject(error))
+      startStub.returns(reject)
 
       let query = { start: startStub }
       QueryService.create.returns(query)
 
       require('../../src/server')
-      .then(() => {
-        test.fail('Should have thrown error')
-        test.end()
-      })
-      .catch(err => {
-        test.ok(Logger.error.calledWith('Fatal error thrown by mock-pathfinder server', error))
-        test.ok(Db.disconnect.calledOnce)
-        test.equal(err, error)
-        test.end()
-      })
+        .then(() => {
+          test.fail('Should have thrown error')
+          test.end()
+        })
+        .catch(err => {
+          test.ok(Logger.error.calledWith('Fatal error thrown by mock-pathfinder server', error))
+          test.ok(Db.disconnect.calledOnce)
+          test.equal(err, error)
+          test.end()
+        })
     })
 
     setupTest.end()

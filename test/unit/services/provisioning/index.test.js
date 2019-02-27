@@ -13,7 +13,7 @@ Test('ProvisioningService', provisioningServiceTest => {
   let defaultSettings = { PORT: 1234, PATH: '/test/service', WSDL_FILE: './test.wsdl' }
 
   provisioningServiceTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(Logger)
     sandbox.stub(Soap)
     t.end()

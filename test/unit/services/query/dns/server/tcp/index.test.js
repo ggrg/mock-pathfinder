@@ -14,7 +14,7 @@ Test('TcpServer', tcpServerTest => {
   let sandbox
 
   tcpServerTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(Net, 'createServer')
     sandbox.stub(TcpConnection, 'create')
     sandbox.stub(BaseServer.prototype, 'handleMessage')

@@ -13,7 +13,7 @@ Test('Phone service', phoneServiceTest => {
   let sandbox
 
   phoneServiceTest.beforeEach((t) => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(Model)
     sandbox.stub(Generator)
     t.end()

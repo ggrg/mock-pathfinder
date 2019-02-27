@@ -4,11 +4,12 @@ const migrationsDirectory = '../migrations'
 const Config = require('../src/lib/config')
 
 module.exports = {
-  client: 'pg',
+  client: 'mysql',
+  version: '5.5',
   connection: Config.DATABASE_URI,
   migrations: {
     directory: migrationsDirectory,
-    tableName: 'migrations',
+    tableName: 'migration',
     stub: `${migrationsDirectory}/migration.template`
   }
 }

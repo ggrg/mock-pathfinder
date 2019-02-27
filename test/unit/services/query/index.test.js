@@ -16,11 +16,13 @@ Test('QueryService', queryServiceTest => {
   let sandbox
   let defaultRecord = {}
   let defaultSettings
+  const NaptrType = 35
 
   queryServiceTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
-    sandbox.stub(Dns, 'createServer')
+    sandbox = Sinon.createSandbox()
     sandbox.stub(Dns, 'NAPTR')
+    sandbox.stub(Dns.NAPTR, 'value').value(NaptrType)
+    sandbox.stub(Dns, 'createServer')
     sandbox.stub(PhoneFormat, 'enumDomainToParsedPhone')
     sandbox.stub(PhoneService, 'getByNumber')
     sandbox.stub(RecordService, 'getByProfileId')
@@ -152,7 +154,7 @@ Test('QueryService', queryServiceTest => {
       let name = '9.0.3.5.7.6.8.5.5.5.1.e164.enum.net'
 
       let request = {}
-      request.question = [{ name, type: 35 }]
+      request.question = [{ name, type: NaptrType }]
 
       let response = {}
       response.header = {}

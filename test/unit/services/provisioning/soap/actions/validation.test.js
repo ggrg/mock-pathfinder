@@ -11,7 +11,7 @@ Test('Validation', soapValidationTest => {
   let sandbox
 
   soapValidationTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(SoapValidation, 'validateRecordRequest')
     t.end()
   })

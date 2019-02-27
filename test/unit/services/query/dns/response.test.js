@@ -21,7 +21,7 @@ Test('DnsResponse', dnsResponseTest => {
   let sandbox
 
   dnsResponseTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(Packet, 'write')
     t.end()
   })

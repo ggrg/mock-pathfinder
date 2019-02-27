@@ -14,7 +14,7 @@ Test('UdpServer', udpServerTest => {
   let sandbox
 
   udpServerTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(Dgram, 'createSocket')
     sandbox.stub(UdpConnection, 'create')
     sandbox.stub(BaseServer.prototype, 'handleMessage')

@@ -17,7 +17,7 @@ Test('SoapActions', soapActionsTest => {
   let sandbox
 
   soapActionsTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(FindProfileAction)
     sandbox.stub(CreateProfileAction)
     sandbox.stub(UpdateProfileAction)

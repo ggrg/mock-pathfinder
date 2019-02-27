@@ -11,7 +11,7 @@ Test('SoapService', soapServiceTest => {
   let sandbox
 
   soapServiceTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(SoapActions)
     t.end()
   })

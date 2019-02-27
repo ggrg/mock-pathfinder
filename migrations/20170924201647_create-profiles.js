@@ -1,11 +1,15 @@
 'use strict'
 
-exports.up = function(knex, Promise) {
-  return knex.schema.createTableIfNotExists('profiles', t => {
-    t.uuid('profileId').primary()
-    t.string('name', 1024).notNullable()
-    t.integer('tier').notNullable()
-    t.timestamp('created').notNullable().defaultTo(knex.fn.now())
+exports.up = async (knex, Promise) => {
+  return await knex.schema.hasTable('profiles').then(function(exists) {
+    if (!exists) {
+      return knex.schema.createTable('profiles', (t) => {
+        t.string('profileId', 36).primary().notNullable()
+        t.string('name', 768).notNullable()
+        t.integer('tier').notNullable()
+        t.timestamp('created').notNullable().defaultTo(knex.fn.now())
+      })
+    }
   })
 }
 

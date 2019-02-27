@@ -2,7 +2,7 @@ const Query = require('@mojaloop/pathfinder-query-client')
 
 const client = Query.createClient({ address: 'localhost', port: 15353 })
 
-const phoneNumber1 = '+12024561414'
+const phoneNumber1 = '+12024561400'
 const phoneNumber2 = '+12024561415'
 
 client.request(phoneNumber1)

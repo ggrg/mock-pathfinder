@@ -15,7 +15,7 @@ Test('SoapUpdateProfile', soapUpdateProfileTest => {
   let sandbox
 
   soapUpdateProfileTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(SoapResult, 'build')
     sandbox.stub(SoapRequestMapper, 'mapToCreateUpdateProfileRequest')
     sandbox.stub(SoapValidation, 'validateCreateUpdateProfileRequest')
@@ -120,7 +120,9 @@ Test('SoapUpdateProfile', soapUpdateProfileTest => {
       SoapRequestMapper.mapToCreateUpdateProfileRequest.returns(P.resolve(request))
 
       let error = new Error('Bad stuff')
-      ProfileService.getByName.returns(P.reject(error))
+      let reject = P.reject(error)
+      reject.catch(() => {})
+      ProfileService.getByName.returns(reject)
 
       let result = {}
       SoapResult.build.returns(result)

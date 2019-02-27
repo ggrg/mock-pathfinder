@@ -21,7 +21,7 @@ Test('SoapFindProfile', soapFindProfileTest => {
   let customerId = 1234
 
   soapFindProfileTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(SoapResult, 'build')
     sandbox.stub(SoapRequestMapper, 'mapToQueryProfileRequest')
     sandbox.stub(SoapResponseMapper, 'mapToProfileResponse')
@@ -138,7 +138,9 @@ Test('SoapFindProfile', soapFindProfileTest => {
       SoapValidation.validateQueryProfileRequest.returns(P.resolve())
 
       let error = new Error('Bad stuff')
-      SoapRequestMapper.mapToQueryProfileRequest.returns(P.reject(error))
+      let reject = P.reject(error)
+      reject.catch(() => {})
+      SoapRequestMapper.mapToQueryProfileRequest.returns(reject)
 
       let result = {}
       SoapResult.build.returns(result)

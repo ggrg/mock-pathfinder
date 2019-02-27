@@ -39,4 +39,16 @@ Dockerfile.old
 # Optional REPL history
 .node_repl_history
 
+# VSCode directory
 .vscode
+
+.npmrc
+
+# --------------- #
+# IntelliJ #
+# --------------- #
+.idea/
+**/*.iml
+
+# Ignore test results
+**/test/results/*

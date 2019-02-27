@@ -31,7 +31,7 @@
     "test:coverage": "istanbul cover tape -- 'test/unit/**/*.test.js'",
     "test:coverage-check": "npm run test:coverage && istanbul check-coverage",
     "test:int": "tape 'test/integration/**/*.test.js' | faucet",
-    "test:integration": "./test/integration-runner.sh .env",
+    "test:integration": "./test/integration-runner.sh ./test/integration-runner.env",
     "migrate": "knex migrate:latest $npm_package_config_knex",
     "migrate:create": "knex migrate:make $npm_package_config_knex",
     "migrate:rollback": "knex migrate:rollback $npm_package_config_knex",
@@ -41,31 +41,31 @@
     "docker:clean": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml down --rmi local"
   },
   "dependencies": {
-    "@mojaloop/central-services-database": "0.3.0",
-    "@mojaloop/central-services-shared": "0.3.0",
-    "bitsyntax": "0.0.4",
-    "bluebird": "3.5.0",
-    "google-libphonenumber": "^3.0.5",
-    "moment": "2.22.2",
+    "@mojaloop/central-services-database": "5.2.1",
+    "@mojaloop/central-services-shared": "5.2.0",
+    "bitsyntax": "0.1.0",
+    "bluebird": "3.5.3",
+    "google-libphonenumber": "^3.2.2",
+    "moment": "2.24.0",
     "native-dns-packet": "0.1.1",
-    "rc": "1.1.6",
-    "soap": "0.21.0",
-    "uuid4": "1.0.0"
+    "rc": "1.2.8",
+    "soap": "0.26.0",
+    "uuid4": "1.1.4"
   },
   "optionalDependencies": {
-    "pg": "6.1.5"
+    "mysql": "2.16.0"
   },
   "devDependencies": {
     "@mojaloop/pathfinder-provisioning-client": "0.12.0",
     "@mojaloop/pathfinder-query-client": "0.2.0",
     "faucet": "0.0.1",
-    "istanbul": "0.4.5",
+    "istanbul": "1.1.0-alpha.1",
     "pre-commit": "1.2.2",
-    "proxyquire": "1.8.0",
-    "sinon": "1.17.6",
-    "standard": "8.6.0",
-    "tap-xunit": "1.5.0",
-    "tape": "4.6.3",
+    "proxyquire": "2.1.0",
+    "sinon": "7.2.4",
+    "standard": "12.0.1",
+    "tap-xunit": "2.3.0",
+    "tape": "4.10.1",
     "tapes": "4.1.0"
   }
 }

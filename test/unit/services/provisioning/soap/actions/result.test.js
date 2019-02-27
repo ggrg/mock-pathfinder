@@ -12,7 +12,7 @@ Test('SoapResult', soapResultTest => {
   let sandbox
 
   soapResultTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(Moment, 'utc')
     t.end()
   })

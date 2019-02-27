@@ -15,7 +15,7 @@ Test('SoapDeactivatePhone', soapDeactivatePhoneTest => {
   let sandbox
 
   soapDeactivatePhoneTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(SoapResult, 'build')
     sandbox.stub(SoapRequestMapper, 'mapToPhoneRequest')
     sandbox.stub(SoapValidation, 'validatePhoneRequest')
@@ -121,7 +121,9 @@ Test('SoapDeactivatePhone', soapDeactivatePhoneTest => {
       SoapRequestMapper.mapToPhoneRequest.returns(P.resolve(query))
 
       let error = new Error('Bad stuff')
-      PhoneService.getByNumber.returns(P.reject(error))
+      let reject = P.reject(error)
+      reject.catch(() => {})
+      PhoneService.getByNumber.returns(reject)
 
       let result = {}
       SoapResult.build.returns(result)

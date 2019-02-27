@@ -28,8 +28,7 @@ exports.execute = (params) => {
               .then(created => Result.build(200, transactionId, ['OK', 'TNs deactivated successfully']))
           })
       })
-  })
-  .catch(Errors.InvalidTransactionIdError, err => Result.build(err.code, 0, [err.name, err.message]))
-  .catch(Errors.BaseError, err => Result.build(err.code, transactionId, [err.name, err.message]))
-  .catch(err => Result.build(500, 0, ['Unknown Error', err.message]))
+  }).catch(Errors.InvalidTransactionIdError, err => Result.build(err.code, 0, [err.name, err.message]))
+    .catch(Errors.BaseError, err => Result.build(err.code, transactionId, [err.name, err.message]))
+    .catch(err => Result.build(500, 0, ['Unknown Error', err.message]))
 }

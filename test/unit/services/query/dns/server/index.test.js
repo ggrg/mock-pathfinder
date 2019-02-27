@@ -11,7 +11,7 @@ Test('DnsServer', dnsServerTest => {
   let sandbox
 
   dnsServerTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(TcpServer, 'createServer')
     sandbox.stub(UdpServer, 'createServer')
     t.end()

@@ -7,6 +7,7 @@ const MaxRecords = 16
 const UnauthorizedTiers = [0, 1]
 const ValidFlags = ['P', 'U', 'A', 'S']
 const ValidStatuses = ['ACTIVE', 'INACTIVE']
+const validTnRecords = 1
 
 exports.validatePhoneRequest = (params) => {
   if (!('TN' in params)) {
@@ -150,8 +151,7 @@ exports.validateRecordRequest = (record) => {
     if (!replacement.trim()) {
       return reject(new Errors.ValueMissingError('NAPTR replacement missing'))
     }
-
-    let partner = record['Partner'] || {}
+    let partner = (Array.isArray(record.Partner) ? record.Partner[0] : record.Partner) || {}
     if (!partner.attributes) {
       partner.attributes = {}
     }
@@ -174,7 +174,7 @@ const validateDnsProfileId = (dnsProfileId) => {
 }
 
 const validateTn = (tn) => {
-  let base = tn['Base'] || ''
+  let base = Array.isArray(tn.Base) ? (tn.Base.length === validTnRecords ? tn.Base[0] : tn.Base) : (tn['Base'] || '')
 
   if (Array.isArray(base)) {
     return P.reject(new Errors.NotImplementedError('Function has not been implemented for multiple single TNs'))

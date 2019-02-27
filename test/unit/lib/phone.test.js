@@ -14,7 +14,7 @@ Test('Phone', phoneTest => {
   let Phone
 
   phoneTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
 
     phoneNumberStub = sandbox.stub()
     phoneUtilInstance = { parse: sandbox.stub(), format: sandbox.stub(), isValidNumber: sandbox.stub() }

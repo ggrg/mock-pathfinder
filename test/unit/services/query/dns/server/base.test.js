@@ -23,7 +23,7 @@ Test('BaseServer', baseServerTest => {
   let sandbox
 
   baseServerTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(DnsRequest, 'parse')
     sandbox.stub(DnsResponse, 'fromRequest')
     t.end()
@@ -112,7 +112,7 @@ Test('BaseServer', baseServerTest => {
       server.on('request', requestSpy)
 
       let connection = {}
-      let receiveBuffer = new Buffer('junk data')
+      let receiveBuffer = Buffer.from('junk data')
       let parseError = new Error('Error parsing request')
       DnsRequest.parse.withArgs(receiveBuffer).throws(parseError)
 

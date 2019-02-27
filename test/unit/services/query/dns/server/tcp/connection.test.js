@@ -11,7 +11,7 @@ Test('TcpConnection', tcpConnTest => {
   let sandbox
 
   tcpConnTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     t.end()
   })
 
@@ -245,7 +245,7 @@ Test('TcpConnection', tcpConnTest => {
       let socket = new EventEmitter()
       let messageSpy = sandbox.spy()
 
-      let sendBuffer = new Buffer('junk data')
+      let sendBuffer = Buffer.from('junk data')
 
       let conn = TcpConnection.create(socket)
       conn.on('message', messageSpy)
@@ -261,4 +261,3 @@ Test('TcpConnection', tcpConnTest => {
 
   tcpConnTest.end()
 })
-

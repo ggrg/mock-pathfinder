@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:6.5.0
+FROM mhart/alpine-node:10.15.1
 
 WORKDIR /opt/mock-pathfinder
 COPY src /opt/mock-pathfinder/src

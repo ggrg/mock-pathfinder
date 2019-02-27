@@ -11,7 +11,7 @@ Test('Generator', generatorTest => {
   let Generator
 
   generatorTest.beforeEach((t) => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
 
     uuidStub = sandbox.stub()
 

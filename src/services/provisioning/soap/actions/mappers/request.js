@@ -41,16 +41,16 @@ exports.mapToCreateUpdateProfileRequest = (params) => {
 
 const mapToRecord = (record) => {
   return {
-    order: parseInt(record['Order']),
-    preference: parseInt(record['Preference']),
-    ttl: parseInt(record['attributes']['ttl']),
-    domainName: record['DomainName'].trim(),
-    flags: record['Flags'].trim().toLowerCase(),
-    service: record['Service'].trim(),
-    regexp: record['Regexp']['attributes']['pattern'].trim(),
-    uri: record['Regexp']['$value'].trim(),
-    replacement: record['Replacement'].trim(),
-    partnerId: record['Partner']['attributes']['id'].trim(),
+    order: parseInt(record.Order),
+    preference: parseInt(record.Preference),
+    ttl: parseInt(record.attributes.ttl),
+    domainName: record.DomainName.trim(),
+    flags: record.Flags.trim().toLowerCase(),
+    service: record.Service.trim(),
+    regexp: record.Regexp.attributes.pattern.trim(),
+    uri: record.Regexp.$value.trim(),
+    replacement: record.Replacement.trim(),
+    partnerId: record.Partner[0].attributes.id.trim(),
     countryCode: false
   }
 }
@@ -61,7 +61,7 @@ const mapToProfileName = (params) => {
 
 const mapToPhone = (params) => {
   return {
-    number: params['TN']['Base'],
+    number: params['TN']['Base'][0],
     countryCode: params['TN']['CountryCode'] || '1'
   }
 }

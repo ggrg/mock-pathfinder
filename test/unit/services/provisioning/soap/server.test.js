@@ -16,7 +16,7 @@ Test('SoapServer', soapServerTest => {
   let defaultSettings = { PATH: '/test/service', WSDL_FILE: './test.wsdl' }
 
   soapServerTest.beforeEach(t => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(Logger)
     sandbox.stub(Soap)
     sandbox.stub(Http)

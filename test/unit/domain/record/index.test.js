@@ -13,7 +13,7 @@ Test('Profile service', serviceTest => {
   let sandbox
 
   serviceTest.beforeEach((t) => {
-    sandbox = Sinon.sandbox.create()
+    sandbox = Sinon.createSandbox()
     sandbox.stub(Model)
     sandbox.stub(Generator)
     t.end()
