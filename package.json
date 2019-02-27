@@ -30,6 +30,7 @@
     "test:xunit": "npm run test:unit | tap-xunit",
     "test:coverage": "istanbul cover tape -- 'test/unit/**/*.test.js'",
     "test:coverage-check": "npm run test:coverage && istanbul check-coverage",
+    "test:int": "tape 'test/integration/**/*.test.js' | faucet",
     "test:integration": "./test/integration-runner.sh .env",
     "migrate": "knex migrate:latest $npm_package_config_knex",
     "migrate:create": "knex migrate:make $npm_package_config_knex",
@@ -55,6 +56,8 @@
     "pg": "6.1.5"
   },
   "devDependencies": {
+    "@mojaloop/pathfinder-provisioning-client": "0.12.0",
+    "@mojaloop/pathfinder-query-client": "0.2.0",
     "faucet": "0.0.1",
     "istanbul": "0.4.5",
     "pre-commit": "1.2.2",
