@@ -3,23 +3,23 @@
 const Model = require('./model')
 const Generator = require('../../lib/generator')
 
-exports.create = async (number, countryCode, profileId, status) => {
+exports.create = (number, countryCode, profileId, status) => {
   let phoneId = Generator.generateId()
   return Model.create({ phoneId, number, countryCode, profileId, status })
 }
 
-exports.update = async (phoneId, fields) => {
+exports.update = (phoneId, fields) => {
   return Model.update(phoneId, fields)
 }
 
-exports.removeById = async (phoneId) => {
+exports.removeById = (phoneId) => {
   return Model.removeById(phoneId)
 }
 
-exports.getByNumber = async (number, countryCode) => {
+exports.getByNumber = (number, countryCode) => {
   return Model.getByNumber(number, countryCode)
 }
 
-exports.getByProfileId = async (profileId) => {
+exports.getByProfileId = (profileId) => {
   return Model.getByProfileId(profileId)
 }
