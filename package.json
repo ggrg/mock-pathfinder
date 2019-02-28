@@ -1,7 +1,7 @@
 {
   "name": "@mojaloop/mock-pathfinder",
   "version": "5.2.0",
-  "description": "Mock implementation of PathFinder service",
+  "description": "Mock implementation of PathFinder",
   "license": "Apache-2.0",
   "private": true,
   "repository": {
