@@ -7,7 +7,7 @@ const RecordModel = require('../../../../src/domain/record/model')
 const Db = require('../../../../src/lib/db')
 const Config = require('../../../../src/lib/config')
 
-Test('Record model', async modelTest => {
+Test('Record model', async (modelTest) => {
   await modelTest.test('setup', async (assert) => {
     try {
       await Db.connect(Config.DATABASE_URI).then(async () => {
@@ -23,8 +23,8 @@ Test('Record model', async modelTest => {
     }
   })
 
-  await modelTest.test('create should', async createTest => {
-    await createTest.test('create a new record', async test => {
+  await modelTest.test('create should', async (createTest) => {
+    await createTest.test('create a new record', async (test) => {
       try {
         const profile = { profileId: Uuid(), name: `PROFILE-${Uuid()}`, tier: 2 }
         const record = {
@@ -54,8 +54,8 @@ Test('Record model', async modelTest => {
     createTest.end()
   })
 
-  await modelTest.test('getByProfileId should', async getByProfileIdTest => {
-    await getByProfileIdTest.test('return records for profile ordered by order then preference', async test => {
+  await modelTest.test('getByProfileId should', async (getByProfileIdTest) => {
+    await getByProfileIdTest.test('return records for profile ordered by order then preference', async (test) => {
       try {
         const profile = { profileId: Uuid(), name: `PROFILE-${Uuid()}`, tier: 2 }
         const record1 = {
@@ -119,8 +119,8 @@ Test('Record model', async modelTest => {
     getByProfileIdTest.end()
   })
 
-  await modelTest.test('removeForProfileId should', async removeForProfileIdTest => {
-    await removeForProfileIdTest.test('remove records for profile', async test => {
+  await modelTest.test('removeForProfileId should', async (removeForProfileIdTest) => {
+    await removeForProfileIdTest.test('remove records for profile', async (test) => {
       try {
         const profile = { profileId: Uuid(), name: `PROFILE-${Uuid()}`, tier: 2 }
         const record1 = {

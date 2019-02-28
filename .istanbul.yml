@@ -1,14 +1,14 @@
 instrumentation:
   include-all-sources: true
-  excludes: ['**/migrations/**', '**/deploy/**']
+  excludes: ['**/migrations/**', '**/seeds/**', '**/deploy/**']
 check:
   global:
-    statements: 100
-    lines: 100
-    branches: 100
-    functions: 100
+    statements: 90
+    lines: 90
+    branches: 90
+    functions: 90
   each:
-    statements: 100
-    lines: 100
-    branches: 100
-    functions: 100
+    statements: 90
+    lines: 90
+    branches: 90
+    functions: 90

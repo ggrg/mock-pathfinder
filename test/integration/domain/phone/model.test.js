@@ -11,7 +11,7 @@ const rand10 = () => {
   return Math.floor(Math.random() * 100000000)
 }
 
-Test('Phone model', async modelTest => {
+Test('Phone model', async (modelTest) => {
   await modelTest.test('setup', async (assert) => {
     try {
       await Db.connect(Config.DATABASE_URI).then(async () => {
@@ -27,8 +27,8 @@ Test('Phone model', async modelTest => {
     }
   })
 
-  await modelTest.test('create should', async createTest => {
-    await createTest.test('create a new phone', async test => {
+  await modelTest.test('create should', async (createTest) => {
+    await createTest.test('create a new phone', async (test) => {
       try {
         const profile = { profileId: Uuid(), name: `PROFILE-${Uuid()}`, tier: 2 }
         const phone = { phoneId: Uuid(), number: `${rand10()}`, countryCode: '1', profileId: profile.profileId, status: 'active' }
@@ -45,8 +45,8 @@ Test('Phone model', async modelTest => {
     createTest.end()
   })
 
-  await modelTest.test('getByNumber should', async getByNumberTest => {
-    await getByNumberTest.test('retrieve a phone by the number', async test => {
+  await modelTest.test('getByNumber should', async (getByNumberTest) => {
+    await getByNumberTest.test('retrieve a phone by the number', async (test) => {
       try {
         const profile = { profileId: Uuid(), name: `PROFILE-${Uuid()}`, tier: 2 }
         const phone = { phoneId: Uuid(), number: `${rand10()}`, countryCode: '1', profileId: profile.profileId, status: 'active' }
@@ -70,8 +70,8 @@ Test('Phone model', async modelTest => {
     getByNumberTest.end()
   })
 
-  await modelTest.test('removeById should', async removeByIdTest => {
-    await removeByIdTest.test('remove a phone by id', async test => {
+  await modelTest.test('removeById should', async (removeByIdTest) => {
+    await removeByIdTest.test('remove a phone by id', async (test) => {
       try {
         const profile = { profileId: Uuid(), name: `PROFILE-${Uuid()}`, tier: 2 }
         const phone = { phoneId: Uuid(), number: `${rand10()}`, countryCode: '1', profileId: profile.profileId, status: 'active' }
@@ -90,8 +90,8 @@ Test('Phone model', async modelTest => {
     removeByIdTest.end()
   })
 
-  await modelTest.test('getByProfileId should', async getByProfileIdTest => {
-    await getByProfileIdTest.test('get all phones for a profile and order by created', async test => {
+  await modelTest.test('getByProfileId should', async (getByProfileIdTest) => {
+    await getByProfileIdTest.test('get all phones for a profile and order by created', async (test) => {
       try {
         const profile = { profileId: Uuid(), name: `PROFILE-${Uuid()}`, tier: 2 }
         const phone = { phoneId: Uuid(), number: `${rand10()}`, countryCode: '1', profileId: profile.profileId, status: 'active' }
@@ -114,8 +114,8 @@ Test('Phone model', async modelTest => {
     getByProfileIdTest.end()
   })
 
-  await modelTest.test('update should', async updateTest => {
-    await updateTest.test('update phone record', async test => {
+  await modelTest.test('update should', async (updateTest) => {
+    await updateTest.test('update phone record', async (test) => {
       try {
         const profile = { profileId: Uuid(), name: `PROFILE-${Uuid()}`, tier: 2 }
         const profile2 = { profileId: Uuid(), name: `PROFILE-${Uuid()}`, tier: 2 }

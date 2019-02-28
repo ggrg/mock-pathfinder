@@ -6,7 +6,7 @@ const Model = require('../../../../src/domain/profile/model')
 const Db = require('../../../../src/lib/db')
 const Config = require('../../../../src/lib/config')
 
-Test('Profile model', async modelTest => {
+Test('Profile model', async (modelTest) => {
   await modelTest.test('setup', async (assert) => {
     try {
       await Db.connect(Config.DATABASE_URI).then(async () => {
@@ -17,13 +17,13 @@ Test('Profile model', async modelTest => {
         assert.end()
       })
     } catch (err) {
-      assert.fail(`Setup for test failed with error - ${err}`)
+      assert.fail(`Setup for (test) failed with error - ${err}`)
       assert.end()
     }
   })
 
-  await modelTest.test('create should', async createTest => {
-    await createTest.test('create a new profile', async test => {
+  await modelTest.test('create should', async (createTest) => {
+    await createTest.test('create a new profile', async (test) => {
       try {
         const profile = { profileId: Uuid(), name: `PROFILE-${Uuid()}`, tier: 2 }
 
@@ -39,8 +39,8 @@ Test('Profile model', async modelTest => {
     createTest.end()
   })
 
-  await modelTest.test('getById should', async getByIdTest => {
-    await getByIdTest.test('get profile by name', async test => {
+  await modelTest.test('getById should', async (getByIdTest) => {
+    await getByIdTest.test('get profile by name', async (test) => {
       try {
         const profileId = Uuid()
         const name = `PROFILE-${Uuid()}`
@@ -62,8 +62,8 @@ Test('Profile model', async modelTest => {
     getByIdTest.end()
   })
 
-  await modelTest.test('getByName should', async getByNameTest => {
-    await getByNameTest.test('get profile by name', async test => {
+  await modelTest.test('getByName should', async (getByNameTest) => {
+    await getByNameTest.test('get profile by name', async (test) => {
       try {
         const name = `PROFILE-${Uuid()}`
         const profile = { profileId: Uuid(), name, tier: 2 }
