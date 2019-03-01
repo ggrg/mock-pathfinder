@@ -2,6 +2,7 @@ FROM mhart/alpine-node:10.15.1
 USER root
 
 WORKDIR /opt/mock-pathfinder
+COPY test /opt/mock-pathfinder/test
 COPY src /opt/mock-pathfinder/src
 COPY seeds /opt/mock-pathfinder/seeds
 COPY migrations /opt/mock-pathfinder/migrations
@@ -15,7 +16,7 @@ RUN apk add --no-cache -t build-dependencies git make gcc g++ python libtool aut
     && apk --no-cache add git
 
 RUN npm install -g tape tap-xunit \
-    && npm install --production
+    && npm install
 
 RUN apk del build-dependencies
 

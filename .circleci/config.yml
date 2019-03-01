@@ -236,7 +236,6 @@ jobs:
   test-integration:
     machine: true
     <<: *defaults_working_directory
-    <<: *defaults_docker_node
     steps:
       - checkout
       - run:
